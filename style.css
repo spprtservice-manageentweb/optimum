@@ -1,102 +1,106 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the header */
-header {
-  background-color: #white;
-  padding: 2px;
-  text-align: left;
-  font-size: 10px;
-  color: white;
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
 }
 .form input {
-  font-family: "Roboto", sans-serif;
+ font-family: "Roboto", sans-serif;
   outline: 10;
   background:  #F7FAFF;
   width: 90%;
   border: 2;
   margin: 10 10 10px;
-  padding: 7px;
+  padding: 5px;
   box-sizing: border-box;
   border: 2px groove solid;
   border-radius: 6px;
   font-size: 14px;
-
 }
 .login-page {
   width: 350px;
-  padding: 4% 0 0;
+  padding: 2% 0 0;
   margin: auto;
- }button {
-  background-color: #ffc40c;
+}button {
+ background-color: #ffd013;
   border: none;
   color: black;
-  padding: 4px 10px;
+  padding: 6px 70px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   margin: 10px 10px;
   cursor: pointer;
-  border-radius: 9px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+#content {
+  width: 450px;
+  background-color: #ffffff;
+  padding: 25px 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+#content h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#content img {
+  max-width: 150px;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+legend {
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.formrow {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.element input[type="text"],
+.element input[type="password"],
+.element select {
+  width: 100%;
+  padding: 8px 10px;
   font-size: 14px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.element input[type="text"]:focus,
+.element input[type="password"]:focus,
+.element select:focus {
+  border-color: #007bff;
+  outline: none;
 }
 .footer {
    position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
-   background-color: #black;
-   color: black;
+   background-color: #40403f;
+   color: white;
    text-align: center;
-   font-size: 13px;
-}
-/* Center the loader */
-#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 120px;
-  height: 120px;
-  margin: -76px 0 0 -76px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
-}
-
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
-}
-
-#myDiv {
-  display: none;
-  text-align: center;
-}
+   font-size: 14px;
